@@ -1,38 +1,38 @@
-
-
 ALIASES = {
 
 	"gm" : "https://www.gmail.com",
+	"dg" : "https://github.com/practo/dose-api",
 	"gh" : "https://github.com",
 	"fb" : "https://www.facebook.com/",
+	"dgp" : "https://github.com/practo/dose-api/pulls",
+	"rg" : "https://github.com/practo/Pharma-Remedy-UI",
+	"c" : "https://practo.atlassian.net/wiki/display/PharmaWAR/Sprints",
+	"j" : "https://practo.atlassian.net/secure/RapidBoard.jspa?rapidView=318&quickFilter=1234",
 	"cb" : "https://www.online.citibank.co.in/"
 }
 
-chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tabInfo) {
-  
-  console.log(tabInfo);
+var redirectOnAlias = function(tabId, changeInfo, tabInfo) { 
   tabUrl = tabInfo.url;
-  console.log(tabUrl);
 
+  /*To extract the string which is entered/searched*/
   regexString = /\?q=(.*?)&/g;
   match = regexString.exec(tabUrl)
   
   if (!match) {
-  	console.log(tabUrl);
-  	console.log("no match found");
+  	
   	return;
   }
 
   searchString = match[1]
-  console.log(searchString)
-  if (searchString in ALIASES) {
-  	 console.log("alias found");
-  	 console.log(ALIASES[searchString]);
-  	 newUrl = ALIASES[searchString];
-  	 chrome.tabs.update(tabId, {url: newUrl});
-  } else {
-  	console.log("alias not found");
-  	return;
-  }
   
-});
+  if (searchString in ALIASES) {  	 
+  	 redirectUrl = ALIASES[searchString];
+  	 chrome.tabs.update(tabId, {url: redirectUrl});
+  } else {
+
+  	return;
+  }  
+}
+
+chrome.tabs.onUpdated.addListener(redirectOnAlias);
+
