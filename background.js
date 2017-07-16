@@ -8,7 +8,10 @@ ALIASES = {
 	"rg" : "https://github.com/practo/Pharma-Remedy-UI",
 	"c" : "https://practo.atlassian.net/wiki/display/PharmaWAR/Sprints",
 	"j" : "https://practo.atlassian.net/secure/RapidBoard.jspa?rapidView=318&quickFilter=1234",
-	"cb" : "https://www.online.citibank.co.in/"
+	"cb" : "https://www.online.citibank.co.in/",
+	"ww" : "https://web.whatsapp.com/",
+  "gs" : "https://docs.google.com/spreadsheets/u/0/",
+  "gd" : "https://docs.google.com/document/u/0/?tgif=d"
 }
 
 var redirectOnAlias = function(tabId, changeInfo, tabInfo) { 
@@ -19,7 +22,7 @@ var redirectOnAlias = function(tabId, changeInfo, tabInfo) {
   match = regexString.exec(tabUrl)
   
   if (!match) {
-  	
+
   	return;
   }
 
